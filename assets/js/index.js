@@ -20,6 +20,12 @@ window.onload = function() {
     drawGrid();
   });
 
+  canvas.addEventListener('click', function(e) {
+      ctx.fillStyle = "black";
+      ctx.fillRect(Math.floor(e.offsetX/sizeX)*sizeX, 
+                  Math.floor(e.offsetY/sizeY)*sizeY,
+                  sizeX, sizeY);
+  })
 
   function drawGrid() {
   
