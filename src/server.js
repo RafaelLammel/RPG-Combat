@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, '../', 'public')));
 app.use(express.json());
 app.use(routes);
 
-const server = require('https').Server(app);
+const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 io.on('connection', socket => {

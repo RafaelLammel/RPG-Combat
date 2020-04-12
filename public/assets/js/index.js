@@ -54,7 +54,6 @@ canvas.addEventListener('mousemove', e => {
     let i = (Math.round((Math.floor(e.offsetX/sizeX)*sizeX*mapSize)/canvas.width));
     let j = (Math.round((Math.floor(e.offsetY/sizeY)*sizeY*mapSize)/canvas.height));
     map[i*mapSize+j] = color;
-    console.log(i*mapSize+j);
     ctx.clearRect(X, Y, width, height);
     ctx.fillStyle = color;
     ctx.fillRect(X, Y, width, height);
