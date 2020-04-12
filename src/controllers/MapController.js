@@ -24,11 +24,29 @@ module.exports = {
 
       }
 
-      return res.render(path.join(__dirname, '../../', 'public', 'index.ejs'), {map: map.data});
+      return res.render(path.join(__dirname, '../../', 'public', 'index.ejs'), {map: map.data, name: map.name});
     
     }
 
     return res.send("Por favor, coloque o nome da sala na URL!");
+
+  },
+
+  update: async (req, res) => {
+
+    let name = req.params.pageName;
+    let { data } = req.body;
+
+    let map = await Map.findOne({name});
+
+    if(!map) {
+      res.status(400);
+      return res.send({status: "No map found"});
+    }
+
+    await Map.updateOne({name}, {data});
+
+    return res.send({status: "Ok"});
 
   }
 

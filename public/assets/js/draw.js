@@ -13,7 +13,6 @@ function drawGrid(bw, bh, sizeX, sizeY, thikness, ctx) {
   let width = sizeX-(thikness*2);
   let height = sizeY-(thikness*2);
 
-  console.log(map);
   for(let i = 0; i <= 10; i++ ) {
     for(let j = 0; j <= 10; j++) {
       ctx.fillStyle = map[i*mapSize+j];

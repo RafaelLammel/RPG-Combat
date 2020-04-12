@@ -12,6 +12,7 @@ var sizeX = bw/mapSize;
 var sizeY = bh/mapSize;
 
 var mouseDown = -1;
+var update;
 
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
@@ -32,7 +33,7 @@ canvas.addEventListener('mousedown', e => {
   let width = sizeX-(thikness*2);
   let height = sizeY-(thikness*2);
   if(mouseDown == 0) {
-
+    clearTimeout(update);
     let i = (Math.floor((Math.floor(e.offsetX/sizeX)*sizeX*mapSize)/canvas.width));
     let j = (Math.floor((Math.floor(e.offsetY/sizeY)*sizeY*mapSize)/canvas.height));
     map[i*mapSize+j] = color;
@@ -41,6 +42,7 @@ canvas.addEventListener('mousedown', e => {
     ctx.fillStyle = color;
     ctx.fillRect(X, Y, width, height);
   } else if(mouseDown == 2) {
+    clearTimeout(update);
     let i = (Math.floor((Math.floor(e.offsetX/sizeX)*sizeX*mapSize)/canvas.width));
     let j = (Math.floor((Math.floor(e.offsetY/sizeY)*sizeY*mapSize)/canvas.height));
     map[i*mapSize+j] = '#ffffff';
@@ -50,6 +52,21 @@ canvas.addEventListener('mousedown', e => {
 
 canvas.addEventListener('mouseup', () => {
   mouseDown = -1;
+  update = setTimeout(function sendUpdate() {
+    fetch(`/${name}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({data: map}),
+    }).then(res => {
+      if(res.status == 400) {
+        res.json().then(json => {
+          console.error(json);
+        })
+      }
+    })
+  }, 3000);
 })
 
 canvas.addEventListener('mousemove', e => {
