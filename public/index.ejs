@@ -16,7 +16,10 @@
     var map = "<%= map %>"; 
     map = map.split(',');
     var name = "<%= name %>";
-    var socketURL = "<%= process.env.APP_URL %>"
+    var socketPORT = "<%= process.env.PORT || 3000 %>";
+    var socketURL = "<%= process.env.APP_URL %>";
+    socketURL+=":"+socketPORT;
+    console.log(socketURL);
   </script>
   <script src="assets/js/variables.js"></script>
   <script src="assets/js/draw.js"></script>

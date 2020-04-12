@@ -6,8 +6,6 @@ const cors = require('cors');
 require('dotenv/config');
 
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
 
 const MapController = require('./controllers/MapController');
 
@@ -22,7 +20,8 @@ app.use(express.static(path.join(__dirname, '../', 'public')));
 app.use(express.json());
 app.use(routes);
 
-server.listen(process.env.SOCKET_PORT);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 io.on('connection', socket => {
 
@@ -43,4 +42,4 @@ io.on('connection', socket => {
 
 });
 
-module.exports = app;
+module.exports = server;
