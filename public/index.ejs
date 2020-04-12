@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RPG Combat</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
 </head>
 <body>
@@ -12,7 +13,9 @@
   </div>
   <canvas id="screen"></canvas>
   <script> var map = "<%= map %>"; map = map.split(','); var name = "<%= name %>"; </script>
+  <script src="assets/js/variables.js"></script>
   <script src="assets/js/draw.js"></script>
+  <script src="assets/js/socket.js"></script>
   <script src="assets/js/index.js"></script>
 </body>
 </html>

@@ -32,22 +32,11 @@ module.exports = {
 
   },
 
-  update: async (req, res) => {
+  update: async data => {
+    let name = data.name;
+    let map = data.data;
 
-    let name = req.params.pageName;
-    let { data } = req.body;
-
-    let map = await Map.findOne({name});
-
-    if(!map) {
-      res.status(400);
-      return res.send({status: "No map found"});
-    }
-
-    await Map.updateOne({name}, {data});
-
-    return res.send({status: "Ok"});
-
+    await Map.updateOne({name}, {data: map});
   }
 
 }

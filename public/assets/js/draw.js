@@ -1,5 +1,7 @@
 function drawGrid(bw, bh, sizeX, sizeY, thikness, ctx) {
   
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   for (let x = 0; x <= bw; x += sizeX) {
     ctx.moveTo(x, 0);
     ctx.lineTo(x, bh);
