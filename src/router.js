@@ -1,10 +1,9 @@
 const express = require('express');
-const path = require('path');
+
+const MapController = require('./controllers/MapController');
 
 const routes = express.Router();
 
-routes.get('/:pageName?', (req, res) => {
-  res.render(path.join(__dirname, '../', 'public', 'index.ejs'));
-});
+routes.get('/:pageName?', MapController.get);
 
 module.exports = routes;
