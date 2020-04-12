@@ -26,11 +26,16 @@ window.addEventListener('resize', () => {
 
 canvas.addEventListener('mousedown', e => {
   mouseDown = e.button;
+  let X = Math.floor(e.offsetX/sizeX)*sizeX+thikness+0.5;
+  let Y = Math.floor(e.offsetY/sizeY)*sizeY+thikness+0.5;
+  let width = sizeX-(thikness*2);
+  let height = sizeY-(thikness*2);
   if(mouseDown == 0) {
-    clearRect(e, sizeX, sizeY, thikness, ctx);
-    drawRect(e, sizeX, sizeY, color, thikness, ctx);
-  } if(mouseDown == 2) {
-    clearRect(e, sizeX, sizeY, thikness, ctx);
+    ctx.clearRect(X, Y, width, height);
+    ctx.fillStyle = color;
+    ctx.fillRect(X, Y, width, height);
+  } else if(mouseDown == 2) {
+    ctx.clearRect(X, Y, width, height);
   }
 })
 
@@ -39,11 +44,16 @@ canvas.addEventListener('mouseup', () => {
 })
 
 canvas.addEventListener('mousemove', e => {
+  let X = Math.floor(e.offsetX/sizeX)*sizeX+thikness+0.5;
+  let Y = Math.floor(e.offsetY/sizeY)*sizeY+thikness+0.5;
+  let width = sizeX-(thikness*2);
+  let height = sizeY-(thikness*2);
   if(mouseDown == 0) {
-    clearRect(e, sizeX, sizeY, thikness, ctx);
-    drawRect(e, sizeX, sizeY, color, thikness, ctx);
+    ctx.clearRect(X, Y, width, height);
+    ctx.fillStyle = color;
+    ctx.fillRect(X, Y, width, height);
   } if(mouseDown == 2) {
-    clearRect(e, sizeX, sizeY, thikness, ctx);
+    ctx.clearRect(X, Y, width, height);
   }
 })
 

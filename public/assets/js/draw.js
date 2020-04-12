@@ -1,28 +1,25 @@
-function drawRect(e, sizeX, sizeY, color, thikness, ctx) {
-  ctx.fillStyle = color;
-  ctx.fillRect(Math.floor(e.offsetX/sizeX)*sizeX+thikness+0.5, 
-              Math.floor(e.offsetY/sizeY)*sizeY+thikness+0.5,
-              sizeX-(thikness*2)+0.5, sizeY-(thikness*2)+0.5);
-}
-
-function clearRect(e, sizeX, sizeY, thikness, ctx) {
-  ctx.clearRect(Math.floor(e.offsetX/sizeX)*sizeX+thikness+0.5, 
-                Math.floor(e.offsetY/sizeY)*sizeY+thikness+0.5,
-                sizeX-(thikness*2), sizeY-(thikness*2));
-}
-
 function drawGrid(bw, bh, sizeX, sizeY, thikness, ctx) {
   
-  for (var x = 0; x <= bw; x += sizeX) {
+  for (let x = 0; x <= bw; x += sizeX) {
     ctx.moveTo(x, 0);
     ctx.lineTo(x, bh);
   }
 
-  for (var y = 0; y <= bh; y += sizeY) {
+  for (let y = 0; y <= bh; y += sizeY) {
     ctx.moveTo(0, y);
     ctx.lineTo(bw, y);
   }
-  
+
+  let counter = 0;
+  let width = sizeX-(thikness*2);
+  let height = sizeY-(thikness*2);
+  for(let i = 0; i <= bh; i += sizeY) {
+    for(let j = 0; j <= bw; j += sizeX) {
+      ctx.fillStyle = map[counter];
+      ctx.fillRect(j+thikness+0.5, i+thikness+0.5, width, height);
+    }
+  }
+
   ctx.strokeStyle = "black";
   ctx.lineWidth = thikness;
   ctx.stroke();
