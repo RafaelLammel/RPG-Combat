@@ -1,3 +1,4 @@
 const app = require('./src/server');
+require('dotenv/config');
 
-app.listen(80);
+app.listen(process.env.APP_PORT);

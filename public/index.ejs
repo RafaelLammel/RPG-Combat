@@ -12,7 +12,12 @@
     <input id="color-picker" type="color" onchange="colorChange()">
   </div>
   <canvas id="screen"></canvas>
-  <script> var map = "<%= map %>"; map = map.split(','); var name = "<%= name %>"; </script>
+  <script> 
+    var map = "<%= map %>"; 
+    map = map.split(',');
+    var name = "<%= name %>";
+    var socketURL = "<%= process.env.APP_URL %>"
+  </script>
   <script src="assets/js/variables.js"></script>
   <script src="assets/js/draw.js"></script>
   <script src="assets/js/socket.js"></script>

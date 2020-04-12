@@ -1,4 +1,4 @@
-var socket = io.connect('http://192.168.15.8:3001');
+var socket = io.connect(socketURL);
 
 socket.on('getPageName', () => {
   socket.emit('joinRoom', name);
