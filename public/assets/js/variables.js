@@ -13,3 +13,4 @@ var sizeY = bh/mapSize;
 
 var mouseDown = -1;
 var update;
+var map;

@@ -4,6 +4,15 @@ socket.on('getPageName', () => {
   socket.emit('joinRoom', name);
 });
 
+socket.on('map', data => {
+  map = data;
+  let main = document.getElementById("main");
+  let loading = document.getElementById("loading");
+  loading.classList.add("invisible");
+  main.classList.remove("invisible");
+  drawGrid(bw, bh, sizeX, sizeY, thikness, ctx);
+})
+
 socket.on('recieveUdpate', data => {
   let X = data.i*sizeX+thikness+0.5;
   let Y = data.j*sizeY+thikness+0.5;

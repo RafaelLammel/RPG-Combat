@@ -25,14 +25,14 @@ canvas.addEventListener('mousedown', e => {
     ctx.clearRect(X, Y, width, height);
     ctx.fillStyle = color;
     ctx.fillRect(X, Y, width, height);
-    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: color});
+    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: color, map});
   } else if(mouseDown == 2) {
     clearTimeout(update);
     let i = (Math.round((Math.floor(e.offsetX/sizeX)*sizeX*mapSize)/canvas.width));
     let j = (Math.round((Math.floor(e.offsetY/sizeY)*sizeY*mapSize)/canvas.height));
     map[i*mapSize+j] = '#ffffff';
     ctx.clearRect(X, Y, width, height);
-    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: '#ffffff'});
+    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: '#ffffff', map});
   }
 })
 
@@ -57,13 +57,13 @@ canvas.addEventListener('mousemove', e => {
     ctx.clearRect(X, Y, width, height);
     ctx.fillStyle = color;
     ctx.fillRect(X, Y, width, height);
-    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: color});
+    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: color, map});
   } if(mouseDown == 2) {
     let i = (Math.round((Math.floor(e.offsetX/sizeX)*sizeX*mapSize)/canvas.width));
     let j = (Math.round((Math.floor(e.offsetY/sizeY)*sizeY*mapSize)/canvas.height));
     map[i*mapSize+j] = '#ffffff';
     ctx.clearRect(X, Y, width, height);
-    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: '#ffffff'});
+    socket.emit('update', {i: i, j: j, position: i*mapSize+j, color: '#ffffff', map});
   }
 })
 
@@ -73,6 +73,6 @@ function colorChange() {
   color = document.getElementById('color-picker').value;
 }
 
-window.onload = function() {
+/*window.onload = function() {
   drawGrid(bw, bh, sizeX, sizeY, thikness, ctx);
-}
+}*/

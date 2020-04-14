@@ -8,13 +8,14 @@
   <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
 </head>
 <body>
-  <div class="container">
-    <input id="color-picker" type="color" onchange="colorChange()">
-  </div>
-  <canvas id="screen"></canvas>
-  <script> 
-    var map = "<%= map %>"; 
-    map = map.split(',');
+  <div id="loading" class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <main id="main" class="invisible">
+    <div class="container">
+      <input id="color-picker" type="color" onchange="colorChange()">
+    </div>
+    <canvas id="screen"></canvas>
+  </main>
+  <script>
     var name = "<%= name %>";
     var socketURL = "<%= process.env.APP_URL %>";
   </script>

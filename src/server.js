@@ -23,18 +23,30 @@ app.use(routes);
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+var hashMap = new Map();
+
 io.on('connection', socket => {
 
   var room = '';
 
   socket.emit('getPageName');
 
-  socket.on('joinRoom', data => {
+  socket.on('joinRoom', async data => {
     room = data;
+    let map;
+    if(io.sockets.adapter.rooms[room] == undefined) {
+      map = await MapController.getMap(room);
+      map = map.data;
+      hashMap.set(room, map);
+    } else {
+      map = hashMap.get(room); 
+    }
+    socket.emit('map', map);
     socket.join(room);
   });
 
   socket.on('update', data => {
+    hashMap.set(room, data.map);
     socket.to(room).emit('recieveUdpate', data);
   });
 
