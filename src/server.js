@@ -29,8 +29,19 @@ io.on('connection', socket => {
 
   var room = '';
 
+  /*
+  * Requisita o nome da página acessada por meio de um evento do frontEnd
+  */
   socket.emit('getPageName');
 
+  /*
+  * Coloca o socket em uma sala e retorna o mapa pego do banco, caso seja 
+  * o primeiro a entrar, ou do Map caso a sala já possua alguém
+  * 
+  * @params: data: nome da sala
+  * 
+  * @return: map: o mapa em formato de Array
+  */
   socket.on('joinRoom', async data => {
     room = data;
     let map;
@@ -45,12 +56,35 @@ io.on('connection', socket => {
     socket.join(room);
   });
 
+  /*
+  * Atualiza o Map da sala no servidor e para todos os sockets da sala
+  * sempre que há uma atualização vinda de algum socket
+  * 
+  * @param: data: JSON, contendo nome do mapa e o próprio mapa em formato de array
+  * 
+  * @return: envia para todos os sockets na sala o novo mapa
+  *  
+  */
   socket.on('update', data => {
     hashMap.set(room, data.map);
     socket.to(room).emit('recieveUdpate', data);
   });
 
-  socket.on('mapUpdate', MapController.update)
+  /*
+  * Atualiza o mapa no banco de dados (Mais detalhes no controller)
+  */
+  socket.on('mapUpdate', MapController.update);
+
+  /*
+  * Verifica se o socket que desconectou foi o último a deixar a sala
+  * para poder limpar o Map
+  */
+  socket.on('disconnect', () => {
+    if (io.sockets.adapter.rooms[room] == undefined) {
+      hashMap.delete(room);
+    }
+    console.log(hashMap);
+  });
 
 });
 
