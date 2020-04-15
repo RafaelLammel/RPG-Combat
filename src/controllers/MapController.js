@@ -4,14 +4,16 @@ const Map = require('../models/Map');
 
 module.exports = {
 
-  get: async (req, res) => {
-    let name = req.params.pageName;
+  welcome: (req, res) => {
+    return res.render(path.join(__dirname, '../../', 'public', 'welcome.ejs'));
+  },
 
-    if(name != null && name != 'favicon.ico') {
-      return res.render(path.join(__dirname, '../../', 'public', 'index.ejs'), {name});
-    }
+  get: (req, res) => {
+    let name = req.params.pageName;
     
-    return res.send("Por favor, coloque o nome da sala na URL!");
+    if(name != 'favicon.ico') {
+      return res.render(path.join(__dirname, '../../', 'public', 'index.ejs'), {name});
+    }  
   },
 
   getMap: async name => {

@@ -36,7 +36,7 @@ Se tiver interesse em mexer no código, seja para colaboração ou só pra fuça
 
 ### Lista de melhorias para o futuro:
 
-* [ ] Adicionar página inicial com apresentação da plataforma + criação de sala
+* [X] Adicionar página inicial com apresentação da plataforma + criação de sala
 * [ ] Permitir usuário alterar tamanho da sala
 * [ ] Melhorar e adicionar itens na interface do mapa
-* [ ] Corrigir bug que ao entrar na sala com alguém pintando, não aparecem as últimas alterações
+* [X] Corrigir bug que ao entrar na sala com alguém pintando, não aparecem as últimas alterações
