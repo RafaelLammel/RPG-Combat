@@ -72,7 +72,3 @@ canvas.addEventListener('contextmenu', event => event.preventDefault());
 function colorChange() {
   color = document.getElementById('color-picker').value;
 }
-
-/*window.onload = function() {
-  drawGrid(bw, bh, sizeX, sizeY, thikness, ctx);
-}*/

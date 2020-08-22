@@ -1,11 +1,18 @@
 var socket = io.connect(socketURL);
 
 socket.on('getPageName', () => {
-  socket.emit('joinRoom', name);
+  socket.emit('joinRoom', {name, mapSize});
 });
 
 socket.on('map', data => {
   map = data;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  bw = canvas.width;
+  bh = canvas.height;
+  mapSize = Math.sqrt(map.length);
+  sizeX = bw/(mapSize);
+  sizeY = bh/(mapSize);
   let main = document.getElementById("main");
   let loading = document.getElementById("loading");
   loading.classList.add("invisible");

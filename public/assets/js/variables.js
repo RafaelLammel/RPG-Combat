@@ -3,7 +3,6 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-var mapSize = 10;
 var thikness = 2;
 var color = 'black';
 var bw = canvas.width;

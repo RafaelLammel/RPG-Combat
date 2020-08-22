@@ -43,10 +43,10 @@ io.on('connection', socket => {
   * @return: map: o mapa em formato de Array
   */
   socket.on('joinRoom', async data => {
-    room = data;
+    room = data.name;
     let map;
     if(io.sockets.adapter.rooms[room] == undefined) {
-      map = await MapController.getMap(room);
+      map = await MapController.getMap({name: room, size: data.mapSize});
       map = map.data;
       hashMap.set(room, map);
     } else {
@@ -83,7 +83,6 @@ io.on('connection', socket => {
     if (io.sockets.adapter.rooms[room] == undefined) {
       hashMap.delete(room);
     }
-    console.log(hashMap);
   });
 
 });

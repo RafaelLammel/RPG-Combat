@@ -12,8 +12,24 @@
   <main>
     <div class="card">
       <h1>Bem vindo ao RPG Combat!</h1>
-      <p>Por favor, coloque abaixo o nome da sala que carregaremos para você!</p>
-      <input id="room" type="text" class="form-control" />
+      <p>Por favor, coloque abaixo o nome e o tamanho da sala que carregaremos para você!<br>
+        Obs.: Se a sala já existir, consideramos o tamanho no qual ela foi cirada!</p>
+      <div class="row">
+        <div class="col-8">
+          <span>Nome:</span>
+        </div>
+        <div class="col-4">
+          <span>Tamanho:</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <input id="room" type="text" class="form-control" />
+        </div>
+        <div class="col-4">
+          <input id="size" type="number" min="2" step="1" class="form-control" />
+        </div>
+      </div>
       <button type="button" class="btn btn-dark" onclick="enterRoom()">Entrar!</button>
     </div>
   </main>

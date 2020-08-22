@@ -14,17 +14,17 @@ module.exports = {
   },
 
   /*
-  * HTTP GET: '/:pageName'
+  * HTTP GET: '/:pageName?mapSize='
   *
-  * @params: pageName: nome do mapa
+  * @params: pageName: nome do mapa, mapSize: tamanho do mapa
   * 
   * @return: página do mapa com o nome definido na URL
   */
   get: (req, res) => {
     let name = req.params.pageName;
-    
+    let mapSize = req.query.mapSize;
     if(name != 'favicon.ico') {
-      return res.render(path.join(__dirname, '../../', 'public', 'index.ejs'), {name});
+      return res.render(path.join(__dirname, '../../', 'public', 'index.ejs'), {name, mapSize: mapSize == undefined || mapSize == null ? 10 : mapSize});
     }  
   },
 
@@ -35,13 +35,12 @@ module.exports = {
   * 
   * @return: Mapa com o nome definido na URL
   */
-  getMap: async name => {
-    let map = await Map.findOne({name});
-
+  getMap: async getData => {
+    let map = await Map.findOne({name: getData.name});
     if(!map) {
-      let data = Array(100).fill('#ffffff');
+      let data = Array(getData.size*getData.size).fill('#ffffff');
       map = {
-        name,
+        name: getData.name,
         data
       }
 

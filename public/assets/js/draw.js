@@ -14,10 +14,11 @@ function drawGrid(bw, bh, sizeX, sizeY, thikness, ctx) {
 
   let width = sizeX-(thikness*2);
   let height = sizeY-(thikness*2);
-
-  for(let i = 0; i <= 10; i++ ) {
-    for(let j = 0; j <= 10; j++) {
-      ctx.fillStyle = map[i*mapSize+j];
+  
+  let s = map == undefined ? mapSize : map.length
+  for(let i = 0; i <= s; i++ ) {
+    for(let j = 0; j <= s; j++) {
+      ctx.fillStyle = map == undefined ? '#ffffff' : map[i*mapSize+j];
       ctx.fillRect((i*sizeX)+thikness+0.5, (j*sizeY)+thikness+0.5, width, height);
     }
   }
